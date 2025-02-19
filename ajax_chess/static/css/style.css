@@ -1,0 +1,305 @@
+/* General Styles */
+body {
+  padding: 0px;
+  font-family: "Montserrat", sans-serif;
+  background-color: #f5f5f5; /* Light gray background for better contrast */
+  color: #333; /* Darker text for readability */
+}
+
+/* Heading Styles */
+.heading {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #2c3e50; /* Dark blue for headings */
+}
+
+/* Table Styles */
+
+table {
+  margin: auto;
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+table th {
+  text-align: center;
+  background-color: #34495e;
+  color: #ecf0f1;
+  padding: 12px;
+  font-size: 1.1rem;
+}
+
+table td {
+  background: #ecf0f1;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #bdc3c7;
+  font-size: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  transition: background-color 0.3s;
+}
+
+table tr:nth-child(even) > td:nth-child(odd),
+table tr:nth-child(odd) > td:nth-child(even) {
+    background: #bdc3c7;
+}
+
+/* table td:hover {
+  background-color: #eeeeee;
+} */
+
+/* Chessboard Styles */
+.chessboard {
+  margin: 20px auto;
+  border: 2px solid #424242;
+  border-collapse: collapse;
+  width: 480px; /* 8 cells * 60px each */
+  height: 480px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chessboard th {
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.chessboard td {
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2rem;
+  padding: 0px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #f5f5f5;
+}
+
+/* Alternate cell colors for chessboard */
+.chessboard tr:nth-child(even) > td:nth-child(odd),
+.chessboard tr:nth-child(odd) > td:nth-child(even) {
+  background-color: #b58863; /* Dark squares */
+}
+
+.chessboard ul.list-group li.list-group-item strong {
+  color: #f5f5f5;
+}
+
+.chessboard tr:nth-child(even) > td:nth-child(even),
+.chessboard tr:nth-child(odd) > td:nth-child(odd) {
+  background-color: #f0d9b5; /* Light squares */
+}
+
+/* Hover effect for chessboard cells */
+.chessboard td:hover {
+  background-color: #a9a9a9;
+}
+
+/* Optional: Highlight selected cells */
+.chessboard td.selected {
+  background-color: #ffeb3b;
+}
+
+/* Piece Styles */
+.chessboard .piece {
+  font-size: 2rem;
+  pointer-events: none; /* Makes pieces non-interactive */
+}
+
+/* Centering Divs */
+.center-div {
+  width: 30%;
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  /* Removed margin-left for better responsiveness */
+}
+
+/* About Me Section */
+.aboutme {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.textpart {
+  flex: 2;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.image {
+  width: 200px;
+  height: 300px;
+  border-radius: 50%; /* Circular image */
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  margin: 0;  
+  border: 1px solid #000; /* Border around the image */
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Ensure the image covers the container */
+  object-position: right;
+}
+
+/* Form Styles */
+form .form-group {
+  margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form select:focus {
+  border-color: #2980b9; /* Highlight border on focus */
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2980b9; /* Primary blue color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+form button:hover {
+  background-color: #1f6391; /* Darker blue on hover */
+}
+
+form .form-text {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Container Styles */
+.container {
+  max-width: 1200px; /* Increased max-width for larger screens */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Heading Styles */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* List Group Styles */
+ul.list-group {
+  list-style: none;
+  padding: 0;
+}
+
+ul.list-group li.list-group-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+ul.list-group li.list-group-item strong {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Card Styles */
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.card-header {
+  background-color: #34495e;
+  color: #ecf0f1;
+  border-bottom: none;
+  padding: 15px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: #ededed;
+  color: #343536;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #7f8c8d;
+  border: none;
+}
+
+.modal-footer .btn-danger {
+  background-color: #c0392b;
+  border: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .aboutme {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .center-div {
+      width: 80%;
+      margin-left: 10%;
+  }
+
+  table {
+      max-width: 100%;
+  }
+}

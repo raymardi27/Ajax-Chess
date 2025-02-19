@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 aboutme">
+    <div class="row">
+        <div class="col-md-4 image">
+            <img src="{% static 'images/rutvik.jpeg' %}" alt="Rutvik A Yamkanmardi" class="img">
+        </div>
+        <div class="col-md-8 textpart">
+            <h2>About Me</h2>
+            <p>Hey I am Rutvik</p>
+            <ul class="list-unstyled">
+                <li>I'm an avid Chess fan - started playing it after watching the Netflix show "Queen's Gambit".</li>
+                <li>I'm also interested in Computer Games, and all the coding and development work that goes into it.</li>
+                <li>I aspire to build a product that becomes a household name due to how useful it is to everyone.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

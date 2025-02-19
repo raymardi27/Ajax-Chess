@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Welcome banner -->
+    <section class="jumbotron text-center bg-light py-5">
+        <div class="container">
+            <h1 class="display-4">Welcome to Ajax Chess</h1>
+            <h2 class="display-6">Now improved with Web Sockets!</h2>
+            <p class="lead">Showcase your strategy skills like the ole' warrior of yore - AJAX and prove your ability to lead Armies to Victory</p>
+            <a href="{% url 'join' %}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Feature 1 -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-chess-king fa-3x mb-3"></i>
+                    <h3>Play Anytime</h3>
+                    <p>Challenge friends or compete against online players worldwide at any time.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-book-reader fa-3x mb-3"></i>
+                    <h3>Keep Track of Win History</h3>
+                    <p>With our advanced AI we can keep track of wins, losses and even draws!</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-book-reader fa-3x mb-3"></i>
+                    <h3>Learn and Improve</h3>
+                    <p>Improve by learning from your track record and manual journal entries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content%}
+    <div class="container">
+        <h2>Game {{game.id}}</h2>
+        <p>White Player: {{game.white_player.username}}</p>
+        <p>Black Player: {{game.black_player.username}}</p>
+        <p>Status: {{game.status}}</p>
+        <p>Outcome: {{game | get_outcome_display:request.user }}</p>
+
+        <h3>Your Journal</h3>
+        <p>{{ journal|linebreaks}}</p>
+
+        <a href="{% url 'edit_game' game.id %}" class='btn btn-secondary'>Edit Journal</a>
+    </div>
+{% endblock %}

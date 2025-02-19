@@ -1,0 +1,32 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Chess Rules Overview</h2>
+    <p class="text-center">There are 16 pieces each player has. Below are the pieces and their corresponding moves.</p>
+
+    <div class="rules mt-4">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>8 Pawns</strong>: Moves forward one square. It can also move forward 2 squares at its very first move. This piece captures one square diagonally. There is also a special move called "En Passant".
+            </li>
+            <li class="list-group-item">
+                <strong>2 Rooks</strong>: Moves horizontally or vertically any number of squares, provided it is not blocked by any other piece. It can also perform a combined move with the King, known as "castling".
+            </li>
+            <li class="list-group-item">
+                <strong>2 Knights</strong>: Moves one square horizontally/vertically and one square diagonally in order. It can jump over other pieces and captures an opposing piece if it lands on it.
+            </li>
+            <li class="list-group-item">
+                <strong>2 Bishops</strong>: Moves diagonally any number of squares, provided it is not blocked by any other piece.
+            </li>
+            <li class="list-group-item">
+                <strong>1 Queen</strong>: Moves horizontally, vertically, or diagonally any number of squares. One of the strongest pieces in the arsenal of a chess player.
+            </li>
+            <li class="list-group-item">
+                <strong>1 King</strong>: Moves horizontally, vertically, or diagonally exactly one square. It is the most important piece, weakest in the early game, but becomes stronger as the game progresses into the late game.
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

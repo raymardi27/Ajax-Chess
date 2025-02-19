@@ -1,0 +1,25 @@
+{% extends '../base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="{% static 'js/chessboard.js' %}"></script>
+
+{% block content %}
+    <p><b>Chess</b> is a derivation of an ancient board game for two players.</p>
+
+    <p>Chess is derived from the Persian version of an Indian game - called <strong>Chaturanga.</strong> It is referred to as "Western Chess" to differentiate it from its Chinese (Xiangqi) and Japanese (Shogi) variants.</p>
+
+    <p>The game of chess is played between two opponents, who move their pieces on a 64 x 64 chequered board called a "Chessboard". The person with the light colored pieces (White) makes the first move, followed by the player with the dark colored pieces (Black). The game then continues with players alternating their moves.</p>
+
+    <p>The Objective of the game is to place the opponent's King "under attack" in such a way that there is no legal move left for the opponent. This move is called the "Checkmate" - which is derived from the Persian phrase "Shah-mat" meaning "The King is dead". The player whose King has been checkmated is said to have lost the game.</p>
+
+    <p>It is also possible to draw the game when: 
+        <ul>
+            <li>Neither player can possibly checkmate the opponent's king due to a lack of pieces</li>
+            <li>The player whose move it is, has no legal moves left and is also not under a "check"</li>
+        </ul>
+    </p>
+
+    <p>It is a zero-sum game, which implies that one person's victory results in the other's loss. Due to this and the complexity generated due to the different possible moves it is often studied in Game Theory and Re-inforcement Learning.</p>
+
+    <p>The current chess World Champion according to the games conducted by FIDE - the International Chess Federation - is GM Ding Liren (as of 2024).</p>
+{% endblock %}

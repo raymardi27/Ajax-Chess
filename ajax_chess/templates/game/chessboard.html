@@ -1,0 +1,148 @@
+{% extends '../base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div>
+<h3>Game with {{ game| get_opponent_username:request.user }}</h3>
+<p id="turn-indicator">It's {{ turn }}'s turn.</p>
+<p id="move-indicator"></p>
+
+
+<!-- Chessboard Rendering -->
+ <div id="chessboard">
+    {% include 'game/chessboard_partial.html' %}
+ </div> 
+
+ {% if messages %}
+ {% for message in messages %}
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         {{ message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+         </button>
+     </div>
+ {% endfor %}
+{% endif%}
+
+{% if game.status != 'completed' %}
+    <form method="post" action="{% url 'make_move' game.id%}" id="move-form" {% if not user_turn %} style="display:none;"{% endif %}>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="move">Enter your move (e.g., e2e4):</label>
+            <input 
+            type="text" 
+            name="move" 
+            id="move" 
+            class="form-control" 
+            required
+            pattern="^[a-hA-H][1-8][a-hA-H][1-8]$"
+            title="Enter a valid move"
+            oninput="validateMove(this)">
+            <div class="invalid-feedback">
+                Please enter a move in the valid format (e.g. a2a3)
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Move</button>
+    </form>
+    <form method="post" action="{% url 'resign_game' game.id %}" class="mt-2">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Resign</button>
+    </form>
+{% endif %}
+
+<h4 class="mt-4" >Move History</h4>
+<p id="move-history">{{ game.moves }}</p>
+</div>
+
+<!-- Game Over Modal -->
+<div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header (optional) -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="gameOverModalLabel">Game Over</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body" id="gameOverMessage">
+          <!-- The game over message will be inserted here -->
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    
+    $(document).ready(function() {
+        updateGame();
+        setInterval(updateGame, 2000);
+
+        clearInterval(fetchAvailableUsers);
+    });
+
+    function validateMove(input) {
+        if (input.checkValidity()) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+        } else {
+            input.classList.remove('is-valid');
+            input.classList.add('is-invalid');
+        }
+    }
+
+    function updateGame() {
+        console.log("In this function");
+        $.ajax({
+            url: "{% url 'check_game_status' game.id %}",
+            dataType: 'json',
+            success: function(data) {
+                if (data.status === 'completed') {
+                    var current_user = "{{request.user.username}}";
+                    var message = data.outcome !== "tie"? data.winner == current_user? "You have won the game!" : "You have lost the game!": `The game ended in a stalemate.`;
+                    // Update the modal message
+                    $('#gameOverMessage').text(message);
+
+                    // Show the modal
+                    $('#gameOverModal').modal('show');
+
+                    // Stop the updateGame interval
+                    clearInterval(updateGameInterval);
+
+                    // Optionally, redirect the user after closing the modal
+                    $('#gameOverModal').on('hidden.bs.modal', function () {
+                        window.location.href = "{% url 'home' %}";
+                    });
+                    alert(`${message} You will be redirected to the Home Page.`);
+                    clearInterval(updateGame);
+                    window.location.href = "{% url 'home' %}";
+                    //location.reload();
+                } else {
+                    $('#move-indicator').empty();
+                    $('#chessboard').html(data.board_html);
+                    $('#turn-indicator').text(data.turn + " to play.");
+                    $('#move-history').text(data.move_history);
+                    if (data.user_turn) {
+                        $('#move-form').show();
+                        $('#move-indicator').text("It's your turn");
+                    } else {
+                        $('#move-indicator').text("Waiting for the opponent to play");
+                        $('#move-form').hide();
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error updating Game: ",error);
+            }
+        });
+    };
+</script>
+{% endblock %}

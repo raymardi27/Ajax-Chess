@@ -1,0 +1,22 @@
+
+{% load custom_filters %}
+{% load static %}
+
+<table class="chessboard">
+    <tr>
+        <th></th>
+        {% for col in 'abcdefgh' %}
+            <th>{{ col }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in '87654321' %}
+    <tr>
+        <th>{{ row }}</th>
+        {% for col in 'abcdefgh' %}
+            {% autoescape off %}
+            <td>{% get_board_cell board col row %}</td>
+            {% endautoescape %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
